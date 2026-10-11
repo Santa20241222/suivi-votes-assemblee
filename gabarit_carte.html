@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mes élus — carte et bilans Marianne</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+:root{--ink:#16202e;--ink-2:#4a5566;--ink-3:#7c8696;--paper:#f3f5f7;--sheet:#fff;--rule:#dde2e8;--focus:#1d5fd6;
+--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;--sans:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 var(--sans)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.top{display:flex;align-items:center;gap:14px;padding:12px 18px;background:var(--sheet);border-bottom:1px solid var(--rule);flex-wrap:wrap}
+.top h1{font:600 20px/1.2 var(--serif);margin:0;flex:0 0 auto}
+.top nav a{font-size:13px;text-decoration:none;color:var(--ink-2);margin-left:12px}
+.search{position:relative;flex:1 1 260px}
+.search input{width:100%;font:inherit;padding:9px 12px;border:1px solid var(--rule);border-radius:8px}
+.sugg{position:absolute;left:0;right:0;top:100%;background:var(--sheet);border:1px solid var(--rule);border-radius:8px;z-index:1000;display:none;max-height:300px;overflow:auto}
+.sugg button{all:unset;display:block;width:100%;padding:8px 12px;cursor:pointer}
+.sugg button:hover,.sugg button:focus{background:var(--paper)}
+.sugg small{color:var(--ink-3)}
+.layout{display:grid;grid-template-columns:1fr 440px;height:calc(100vh - 62px)}
+#map{height:100%}
+.side{overflow:auto;background:var(--sheet);border-left:1px solid var(--rule);padding:16px 18px}
+.side h2{font:600 24px/1.15 var(--serif);margin:0 0 4px}
+.side .sub{color:var(--ink-2);font-size:13px;margin:0 0 12px}
+.filters{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.filters label{font-size:12px;border:1px solid var(--rule);border-radius:999px;padding:3px 9px;display:flex;gap:5px;align-items:center;cursor:pointer}
+.filters label.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.lvl{border-top:1px solid var(--rule);padding:10px 0}
+.lvl h3{font:600 15px/1.3 var(--serif);margin:0 0 6px;display:flex;justify-content:space-between;align-items:center}
+.lvl h3 small{color:var(--ink-3);font-weight:400;font-size:12px}
+.lvl ul{list-style:none;margin:0;padding:0}
+.lvl li button{all:unset;display:flex;justify-content:space-between;gap:8px;width:100%;padding:5px 6px;border-radius:6px;cursor:pointer;font-size:14px}
+.lvl li button:hover{background:var(--paper)}
+.lvl li small{color:var(--ink-3);white-space:nowrap}
+.tag{display:inline-block;font-size:11px;font-weight:600;border-radius:4px;padding:1px 6px;margin-left:6px}
+.tag-pb{background:#f8e2e2;color:#9b1c1c}.tag-ok{background:#e3f1e6;color:#1d6b33}
+.lvl select{font:inherit;font-size:13px;padding:4px 8px;border:1px solid var(--rule);border-radius:6px;margin-bottom:6px;max-width:100%}
+.more{all:unset;font-size:13px;color:var(--ink-2);cursor:pointer;text-decoration:underline;padding:4px 6px}
+.empty{color:var(--ink-3);font-size:14px}
+.hint{color:var(--ink-2);font-size:14px}
+/* fiche */
+.scrim{position:fixed;inset:0;background:rgba(22,32,46,.35);z-index:2000;display:none}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(640px,100%);background:var(--sheet);z-index:2001;transform:translateX(100%);transition:transform .22s;display:flex;flex-direction:column;box-shadow:-12px 0 40px rgba(22,32,46,.18)}
+.drawer.open{transform:none}
+.d-head{padding:20px 24px 14px;border-bottom:1px solid var(--rule);border-top:6px solid var(--ink)}
+.d-top{display:flex;justify-content:space-between;gap:12px}
+.d-kicker{font-size:13px;color:var(--ink-2)}
+.d-head h2{font:600 26px/1.15 var(--serif);margin:6px 0 4px}
+.d-sub{color:var(--ink-2);font-size:14px;margin:0 0 10px}
+.close{all:unset;cursor:pointer;font-size:26px;line-height:1;padding:2px 8px;border-radius:6px;color:var(--ink-2)}
+.links a{font-size:13px;text-decoration:none;border:1px solid var(--rule);border-radius:6px;padding:5px 10px;display:inline-block;margin:0 6px 4px 0}
+.d-body{overflow:auto;padding:14px 24px 30px;flex:1}
+.mar{border:1px solid var(--rule);border-radius:10px;padding:14px 16px;margin:0 0 14px;background:#fafbfc}
+.mar h3{font:600 17px/1.3 var(--serif);margin:0 0 6px}
+.mar .concl{font:16px/1.55 var(--serif);margin:6px 0 10px;padding:10px 12px;border-radius:6px;background:#fff;border:1px solid var(--rule)}
+.mar .concl.pb{border-left:4px solid #9b1c1c}.mar .concl.ok{border-left:4px solid #1d6b33}
+.mar .ref{margin:10px 0 0;padding:10px 0 0;border-top:1px solid var(--rule)}
+.mar .loi{font-weight:600}
+.mar .regle{font:15px/1.55 var(--serif);color:var(--ink-2);margin:3px 0 6px;padding-left:10px;border-left:3px solid var(--rule)}
+.st{display:inline-block;font-size:12px;font-weight:600;border-radius:4px;padding:1px 7px;margin-right:6px}
+.st-sanction{background:#f8e2e2;color:#9b1c1c}.st-procedure{background:#fff3df;color:#8a4b00}.st-aucune{background:#e3f1e6;color:#1d6b33}.st-etabli{background:#fde8d2;color:#7a3e00}
+.mar .methode{font-size:12px;color:var(--ink-3);margin:12px 0 0}
+.syn h3{font:600 17px/1.3 var(--serif);margin:18px 0 6px;padding-bottom:5px;border-bottom:1px solid var(--rule)}
+.syn .resume{font:16px/1.6 var(--serif);margin:0 0 8px}
+.syn ul{margin:0;padding-left:18px}.syn li{margin:7px 0}
+.syn .src{display:block;font-size:12px;color:var(--ink-3)}
+.date{color:var(--ink-3);font-size:13px}
+.none{color:var(--ink-3);font-size:14px}
+.leaflet-marker-icon.dot{border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1px rgba(0,0,0,.25)}
+@media (max-width:860px){.layout{grid-template-columns:1fr;grid-template-rows:45vh 1fr;height:auto}.side{border-left:0;border-top:1px solid var(--rule)}}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>Mes élus</h1>
+  <div class="search"><input id="q" type="search" placeholder="Votre commune ou code postal…" aria-label="Rechercher une commune" autocomplete="off"><div class="sugg" id="sugg"></div></div>
+  <nav><a href="index.html">Votes des députés</a></nav>
+</div>
+<div class="layout">
+  <div id="map"></div>
+  <aside class="side" id="side">
+    <p class="hint">Saisissez votre commune, ou cliquez sur la carte, pour voir la pyramide de vos élus : maire, conseillers départementaux, conseillers régionaux, députés, sénateurs, eurodéputés. Les points colorés signalent les élus dont le bilan Marianne est documenté : rouge, comportement problématique ; vert, dossier vide.</p>
+  </aside>
+</div>
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-hidden="true"><div id="d-inner" style="display:contents"></div></aside>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+const D = /*__DONNEES__*/null;
+const $ = id => document.getElementById(id);
+const esc = s => String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const norm = s => String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim();
+const fmtDate = s => s ? new Date(s+"T12:00:00").toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"}) : "";
+const SYN = D.syntheses||{};
+const nomComplet = e => `${e.prenom} ${e.nom}`;
+const cle = (type,e,extra) => type==="depute"&&e.pa ? e.pa : type==="maire" ? "M-"+extra : null; // identifiants des fiches Marianne
+const etat = k => { const f=k&&SYN[k]; if(!f) return ""; return /^Comportement problématique/.test(f.conclusion||"") ? "pb" : "ok"; };
+const tag = k => { const s=etat(k); return s?`<span class="tag tag-${s}">${s==="pb"?"Marianne : problématique":"Marianne : dossier vide"}</span>`:""; };
+
+/* ---------- carte ---------- */
+const map = L.map("map",{zoomControl:true}).setView([46.6,2.4],6);
+L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,attribution:"© OpenStreetMap"}).addTo(map);
+const layer = L.layerGroup().addTo(map);
+function dot(color,size){return L.divIcon({className:"dot",iconSize:[size,size],html:"",iconAnchor:[size/2,size/2]}) }
+function rendreMarqueurs(){
+  layer.clearLayers();
+  for (const [code,[lat,lon,nom,pop]] of Object.entries(D.communes)){
+    const s = etat("M-"+code);
+    const m = L.marker([lat,lon],{icon:dot(s,s?14:8)});
+    m.getElement; m.on("add",()=>{const el=m.getElement(); if(el){el.style.background=s==="pb"?"#9b1c1c":s==="ok"?"#1d6b33":"#7c8696"; el.style.opacity=s?"1":".55";}});
+    m.bindTooltip(`${esc(nom)}${D.maires[code]?" — "+esc(nomComplet(D.maires[code])):""}`);
+    m.on("click",()=>chargerCommune(code));
+    m.addTo(layer);
+  }
+}
+rendreMarqueurs();
+map.on("click",async e=>{
+  try{ const r=await fetch(`https://geo.api.gouv.fr/communes?lat=${e.latlng.lat}&lon=${e.latlng.lng}&fields=code,nom,codeDepartement,codeRegion,centre,population`); const a=await r.json(); if(a[0]) afficher(a[0]); }catch(err){}
+});
+
+/* ---------- recherche ---------- */
+let t; $("q").addEventListener("input",()=>{clearTimeout(t); t=setTimeout(chercher,220);});
+async function chercher(){
+  const v=$("q").value.trim(); const box=$("sugg"); if(v.length<2){box.style.display="none";return;}
+  const url=/^\d{5}$/.test(v)?`https://geo.api.gouv.fr/communes?codePostal=${v}`:`https://geo.api.gouv.fr/communes?nom=${encodeURIComponent(v)}&boost=population&limit=8`;
+  try{ const a=await (await fetch(url+"&fields=code,nom,codeDepartement,codeRegion,centre,population,codesPostaux")).json();
+    box.innerHTML=a.map(c=>`<button data-c='${esc(JSON.stringify(c))}'>${esc(c.nom)} <small>${esc(c.codeDepartement)} · ${(c.population||0).toLocaleString("fr-FR")} hab.</small></button>`).join("")||`<button disabled>Aucune commune</button>`;
+    box.style.display="block";
+    box.querySelectorAll("button[data-c]").forEach(b=>b.onclick=()=>{box.style.display="none"; $("q").value=""; afficher(JSON.parse(b.dataset.c));});
+  }catch(e){ box.innerHTML="<button disabled>Recherche indisponible</button>"; box.style.display="block"; }
+}
+document.addEventListener("click",e=>{ if(!e.target.closest(".search")) $("sugg").style.display="none"; });
+async function chargerCommune(code){
+  try{ const c=await (await fetch(`https://geo.api.gouv.fr/communes/${code}?fields=code,nom,codeDepartement,codeRegion,centre,population`)).json(); afficher(c); }catch(e){}
+}
+
+/* ---------- pyramide ---------- */
+const FILTRES={maire:"Maire",departemental:"Conseil départemental",regional:"Conseil régional",depute:"Députés",senateur:"Sénateurs",euro:"Eurodéputés"};
+let actifs=new Set(Object.keys(FILTRES)), seulementMarianne=false, communeCourante=null;
+function afficher(c){
+  communeCourante=c;
+  if(c.centre){ const [lon,lat]=c.centre.coordinates; map.setView([lat,lon],11); }
+  const dep=c.codeDepartement, reg=c.codeRegion, maire=D.maires[c.code];
+  const liste=(type,arr,fn,limite)=>{
+    arr=arr||[]; if(seulementMarianne) arr=arr.filter(e=>etat(fn(e)));
+    if(!arr.length) return `<p class="empty">Aucun élu${seulementMarianne?" avec bilan Marianne documenté":""}.</p>`;
+    const vis=limite&&arr.length>limite?arr.slice(0,limite):arr;
+    return `<ul>${vis.map((e,i)=>`<li><button data-t="${type}" data-i="${arr.indexOf(e)}"><span>${esc(nomComplet(e))}${tag(fn(e))}</span><small>${esc(e.circo||e.canton||e.section||"")}</small></button></li>`).join("")}</ul>${arr.length>vis.length?`<button class="more" data-more="${type}">Afficher les ${arr.length-vis.length} autres</button>`:""}`;
+  };
+  const deps=D.departementaux[dep]||[]; const cantons=[...new Set(deps.map(e=>e.canton))].sort();
+  const bloc=(k,titre,n,html)=>actifs.has(k)?`<section class="lvl" data-lvl="${k}"><h3>${titre}<small>${n}</small></h3>${html}</section>`:"";
+  $("side").innerHTML=`
+   <h2>${esc(c.nom)}</h2><p class="sub">${esc(dep)} · ${(c.population||0).toLocaleString("fr-FR")} habitants</p>
+   <div class="filters">${Object.entries(FILTRES).map(([k,v])=>`<label class="${actifs.has(k)?"on":""}"><input type="checkbox" data-f="${k}" ${actifs.has(k)?"checked":""} hidden>${v}</label>`).join("")}
+     <label class="${seulementMarianne?"on":""}"><input type="checkbox" id="fm" ${seulementMarianne?"checked":""} hidden>Bilan Marianne documenté</label></div>
+   ${bloc("maire","Maire",maire?1:0,maire?liste("maire",[maire],()=>"M-"+c.code):`<p class="empty">Maire non renseigné dans le répertoire.</p>`)}
+   ${bloc("departemental","Conseil départemental",deps.length,`<select id="canton"><option value="">Tous les cantons (${cantons.length})</option>${cantons.map(x=>`<option>${esc(x)}</option>`).join("")}</select><div id="deps">${liste("departemental",deps,()=>null,12)}</div>`)}
+   ${bloc("regional",`Conseil régional${D.regions[reg]?" · "+esc(D.regions[reg]):""}`,(D.regionaux[reg]||[]).length,liste("regional",D.regionaux[reg],()=>null,12))}
+   ${bloc("depute","Députés du département",(D.deputes[dep]||[]).length,liste("depute",D.deputes[dep],e=>e.pa))}
+   ${bloc("senateur","Sénateurs du département",(D.senateurs[dep]||[]).length,liste("senateur",D.senateurs[dep],()=>null))}
+   ${bloc("euro","Eurodéputés (circonscription nationale)",D.euro.length,liste("euro",D.euro,()=>null,10))}`;
+  $("side").querySelectorAll("input[data-f]").forEach(i=>i.onchange=()=>{i.checked?actifs.add(i.dataset.f):actifs.delete(i.dataset.f); afficher(c);});
+  $("fm").onchange=e=>{seulementMarianne=e.target.checked; afficher(c);};
+  const sel=$("canton"); if(sel) sel.onchange=()=>{ const v=sel.value; $("deps").innerHTML=liste("departemental",v?deps.filter(e=>e.canton===v):deps,()=>null,v?0:12); };
+  $("side").onclick=e=>{
+    const m=e.target.closest("button[data-more]"); if(m){ const k=m.dataset.more; const arrs={departemental:deps,regional:D.regionaux[reg],euro:D.euro}; m.parentElement.innerHTML=liste(k,arrs[k],()=>null,0); return; }
+    const b=e.target.closest("button[data-t]"); if(!b) return;
+    const arrs={maire:[maire],departemental:(sel&&sel.value)?deps.filter(x=>x.canton===sel.value):deps,regional:D.regionaux[reg]||[],depute:D.deputes[dep]||[],senateur:D.senateurs[dep]||[],euro:D.euro};
+    const e2=arrs[b.dataset.t][+b.dataset.i]; if(e2) ouvrir(b.dataset.t,e2,c);
+  };
+}
+
+/* ---------- fiche ---------- */
+const MANDAT={maire:"Maire",departemental:"Conseiller départemental",regional:"Conseiller régional",depute:"Député",senateur:"Sénateur",euro:"Député européen"};
+function synthese(f){
+  if(!f) return `<p class="none">Aucun bilan Marianne documenté pour cet élu à ce jour. Le site ne prête à personne une position ou un fait qu'une source n'établit pas.</p>`;
+  const src=x=>x.source?`<span class="src">Source : ${x.url?`<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.source)}</a>`:esc(x.source)}</span>`:"";
+  const STL={sanction:"Sanction ou condamnation prononcée",procedure:"Procédure engagée, aucune condamnation",aucune:"Aucune infraction documentée",etabli:"Fait établi, susceptible de relever d'un texte, aucune poursuite engagée"};
+  const concl=f.conclusion?`<p class="concl ${/^Comportement problématique/.test(f.conclusion)?"pb":"ok"}"><b>Conclusion de Marianne.</b> ${esc(f.conclusion)}</p>`:"";
+  const droit=(f.droit||[]).map(r=>`<div class="ref"><div class="loi">${esc(r.texte)}</div><p class="regle">${esc(r.regle)}</p><p><b>Fait :</b> ${esc(r.fait)}</p><p><span class="st st-${r.statut}">${STL[r.statut]||esc(r.statut)}</span>${esc(r.detail)}${src(r)}</p></div>`).join("");
+  const sec=(t,arr,fn)=>arr&&arr.length?`<h3>${t}</h3><ul>${arr.map(x=>`<li>${fn(x)}${src(x)}</li>`).join("")}</ul>`:"";
+  return `<div class="mar"><h3>Marianne</h3>${concl}${droit}<p class="methode">${esc(SYN._methode||"")}</p></div>
+   <div class="syn">${f.resume?`<p class="resume">${esc(f.resume)}</p>`:""}
+   ${sec("Sanctions, poursuites et procédures",f.sanctions,x=>`<span class="date">${esc(x.date)}</span> ${esc(x.detail)}`)}
+   ${sec("Prises de position",f.positions,x=>`<b>${esc(x.sujet)}.</b> ${esc(x.detail)}`)}
+   ${sec("Actions et initiatives",f.actions,x=>`<span class="date">${esc(x.date)}</span> ${esc(x.detail)}`)}
+   ${sec("Propositions",f.propositions,x=>`${esc(x.titre)} <span class="date">${esc(x.date)}${x.role?", "+esc(x.role):""}</span>`)}
+   ${f.redige?`<p class="date">Synthèse documentée rédigée le ${fmtDate(f.redige)} à partir des sources citées.</p>`:""}</div>`;
+}
+let lastFocus=null;
+function ouvrir(type,e,c){
+  const k=cle(type,e,c.code), f=k&&SYN[k];
+  lastFocus=document.activeElement;
+  $("d-inner").innerHTML=`
+   <div class="d-head" style="border-top-color:${etat(k)==="pb"?"#9b1c1c":etat(k)==="ok"?"#1d6b33":"#16202e"}"><div class="d-top"><div class="d-kicker">${MANDAT[type]}${type==="maire"?" de "+esc(e.commune||c.nom):type==="depute"&&e.circo?" · "+esc(e.circo):type==="departemental"&&e.canton?" · canton "+esc(e.canton):type==="regional"&&D.regions[c.codeRegion]?" · "+esc(D.regions[c.codeRegion]):type==="senateur"?" · "+esc(c.codeDepartement):""}</div><button class="close" id="d-close" aria-label="Fermer">×</button></div>
+    <h2>${esc(nomComplet(e))}</h2><p class="d-sub">${e.debut?"Mandat en cours depuis le "+fmtDate(e.debut):""}</p>
+    <div class="links">${e.pa?`<a href="index.html#${e.pa}">Tous ses votes nominatifs et sa fiche complète</a>`:""}</div></div>
+   <div class="d-body">${synthese(f)}</div>`;
+  const dr=$("drawer"); dr.classList.add("open"); dr.setAttribute("aria-hidden","false"); $("scrim").style.display="block";
+  $("d-close").onclick=fermer; $("d-close").focus();
+}
+function fermer(){ const dr=$("drawer"); dr.classList.remove("open"); dr.setAttribute("aria-hidden","true"); $("scrim").style.display="none"; lastFocus?.focus(); }
+$("scrim").onclick=fermer; document.addEventListener("keydown",e=>{ if(e.key==="Escape") fermer(); });
+</script>
+</body>
+</html>

@@ -27,7 +27,8 @@ jobs:
       - name: Générer le site
         run: |
           python3 generer_suivi.py --sortie index.html
-          mkdir -p _site && mv index.html _site/index.html
+          python3 generer_carte.py --amo donnees_an/AMO10_deputes_actifs_mandats_actifs_organes.json.zip --sortie carte.html
+          mkdir -p _site && mv index.html carte.html _site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

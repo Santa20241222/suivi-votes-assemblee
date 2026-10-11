@@ -503,5 +503,50 @@
    }
   ],
   "conclusion": "Aucune infraction ni sanction documentée. Présidence de la commission des affaires économiques exercée conformément au Règlement. Exercice régulier du mandat."
+ },
+ "M-93066": {
+  "nom": "Bally Bagayoko",
+  "mandat": "Maire de Saint-Denis Pierrefitte-sur-Seine",
+  "redige": "2026-10-11",
+  "resume": "Maire (La France insoumise) de Saint-Denis Pierrefitte-sur-Seine depuis le 21 mars 2026, élu au premier tour avec 50,77 % des voix. Ancien conseiller départemental de la Seine-Saint-Denis.",
+  "conclusion": "Comportement problématique : s'abstenir, avec sa majorité, sur un vœu contre l'excision dans le département le plus touché par cette pratique, alors qu'une campagne en faisait la promotion auprès des familles du territoire, et annoncer le rejet avant d'avoir compté les voix favorables. Le désaccord sur le volet législatif du vœu pouvait s'exprimer dans le cadre, par un vote séparé ou un contre-vœu ; il a prévalu sur un signal clair contre une mutilation d'enfants. Aucune infraction. Le maire a déclaré par ailleurs son opposition à l'excision.",
+  "droit": [
+   {
+    "texte": "Code pénal, articles 222-9, 222-10 et 222-16-2",
+    "regle": "Les violences ayant entraîné une mutilation sur un mineur de quinze ans sont punies de quinze ans de réclusion criminelle ; la loi s'applique aux faits commis à l'étranger sur une mineure résidant habituellement en France.",
+    "fait": "Vœu du conseil municipal du 24 septembre 2026 « pour la protection des filles et des femmes contre l'excision et les mutilations sexuelles féminines et pour l'adoption de la loi intégrale VSS » : adopté par 8 voix pour, 0 contre, 44 abstentions dont celle du maire (délibération C-44, publiée le 2 octobre 2026).",
+    "statut": "aucune",
+    "detail": "S'abstenir sur un vœu est un droit ; aucune règle n'est enfreinte. La majorité indique avoir approuvé en séance le volet relatif à l'excision et refusé le soutien à une proposition de loi encore en discussion.",
+    "source": "Cabinet Kohen Avocats, analyse de la délibération C-44 ; Parlons politique, 10 octobre 2026",
+    "url": "https://kohenavocats.com/voeu-excision-saint-denis-bagayoko-abstention-conseil-municipal/"
+   },
+   {
+    "texte": "Code général des collectivités territoriales, article L. 2121-20 (vote des délibérations)",
+    "regle": "Les délibérations sont prises à la majorité absolue des suffrages exprimés ; le maire préside et proclame le résultat.",
+    "fait": "Le maire a annoncé que le vœu n'était pas adopté avant d'avoir appelé les voix favorables ; le vœu a finalement été constaté adopté (8 pour, 0 contre).",
+    "statut": "etabli",
+    "detail": "Irrégularité de présidence établie par les comptes rendus ; sans conséquence sur le résultat, aucune contestation juridictionnelle connue.",
+    "source": "Parlons politique, 10 octobre 2026",
+    "url": "https://www.parlons-politique.fr/politique-locale/a-saint-denis-labstention-de-la-majorite-interroge-sur-les-moyens-concrets-de-lutter-contre-lexcision_29120/"
+   }
+  ],
+  "positions": [
+   {
+    "sujet": "Excision",
+    "detail": "Dans un entretien publié avant le conseil municipal, exprime son opposition à l'excision ; après le vote, justifie l'abstention de sa majorité par le refus de soutenir un texte législatif susceptible d'évoluer, tout en disant approuver le volet contre l'excision.",
+    "source": "Parlons politique, 10 octobre 2026",
+    "url": "https://www.parlons-politique.fr/politique-locale/a-saint-denis-labstention-de-la-majorite-interroge-sur-les-moyens-concrets-de-lutter-contre-lexcision_29120/"
+   }
+  ],
+  "actions": [
+   {
+    "date": "2026-03",
+    "detail": "Dix jours après son élection, rappel écrit du ministre de l'Action et des Comptes publics sur le principe de neutralité : aucune autorité municipale ne peut laisser entendre que l'affectation ou le maintien d'agents dépendrait de leur adhésion aux orientations politiques de l'exécutif. Polémique parallèle sur le désarmement annoncé de la police municipale.",
+    "source": "Weka, 26 mars 2026",
+    "url": "https://www.weka.fr/actualite/?p=212304"
+   }
+  ],
+  "propositions": [],
+  "sanctions": []
  }
 }

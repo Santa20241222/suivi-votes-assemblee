@@ -117,6 +117,7 @@ footer{border-top:1px solid var(--rule);padding:20px 0 40px;color:var(--ink-3);f
 <header class="wrap">
   <h1>Suivi nominatif des votes à l'Assemblée nationale</h1>
   <p class="lede" id="lede"></p>
+  <p class="lede" style="margin-top:8px"><a href="carte.html">Carte de mes élus : maire, conseillers, députés, sénateurs</a></p>
   <div class="hemi" id="hemi">
     <svg id="hemi-svg" viewBox="0 0 1000 520" role="img" aria-label="Répartition des sièges par groupe"></svg>
     <div class="hemi-center"><b id="total"></b><span>députés en fonction</span></div>
@@ -249,6 +250,7 @@ function filterDeputes(){
 let qTimer; $("q").addEventListener("input",()=>{clearTimeout(qTimer); qTimer=setTimeout(()=>tab==="d"?filterDeputes():filterScrutins(),150);});
 $("stype").addEventListener("change",filterScrutins);
 filterDeputes();
+window.addEventListener("load",()=>{ const h=location.hash.slice(1); if(h&&BYID[h]) openDepute(h); });
 
 /* ---------- panneau ---------- */
 let lastFocus=null;
