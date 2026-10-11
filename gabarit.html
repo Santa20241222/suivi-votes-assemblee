@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Suivi nominatif des votes — Assemblée nationale</title>
+<style>
+:root{--ink:#16202e;--ink-2:#4a5566;--ink-3:#7c8696;--paper:#f3f5f7;--sheet:#fff;--rule:#dde2e8;--focus:#1d5fd6;
+--serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+--sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.5 var(--sans)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+header{padding:36px 0 6px}
+h1{font:600 clamp(28px,4vw,44px)/1.08 var(--serif);margin:0 0 10px;max-width:20ch}
+.lede{color:var(--ink-2);max-width:66ch;margin:0}
+.hemi{position:relative;margin:16px auto 0;max-width:960px}
+.hemi svg{width:100%;height:auto;display:block}
+.hemi circle{cursor:pointer;transition:opacity .15s}
+.hemi.dim circle{opacity:.18}.hemi.dim circle.on{opacity:1}
+.hemi-center{position:absolute;left:50%;bottom:4px;transform:translateX(-50%);text-align:center;pointer-events:none}
+.hemi-center b{display:block;font:600 50px/1 var(--serif)}
+.hemi-center span{color:var(--ink-2);font-size:14px}
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:#fff;padding:6px 10px;border-radius:6px;font-size:13px;white-space:nowrap;z-index:60;display:none}
+.tip small{display:block;opacity:.75}
+.legend{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:16px 0 4px}
+.legend a{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-size:13px;padding:5px 10px 5px 8px;border:1px solid var(--rule);border-radius:999px;background:var(--sheet)}
+.legend i{width:10px;height:10px;border-radius:50%}
+.legend em{font-style:normal;color:var(--ink-3)}
+.bar{position:sticky;top:0;z-index:10;background:rgba(243,245,247,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--rule);margin-top:16px}
+.bar .wrap{display:flex;gap:10px;align-items:center;padding-top:10px;padding-bottom:10px;flex-wrap:wrap}
+.tabs{display:flex;border:1px solid var(--rule);border-radius:8px;overflow:hidden;background:var(--sheet)}
+.tabs button{font:inherit;font-size:14px;font-weight:600;border:0;background:none;padding:8px 14px;cursor:pointer;color:var(--ink-2)}
+.tabs button[aria-selected=true]{background:var(--ink);color:#fff}
+input[type=search],select{font:inherit;padding:8px 11px;border:1px solid var(--rule);border-radius:8px;background:var(--sheet)}
+.bar input[type=search]{flex:1 1 240px}
+.count{color:var(--ink-2);font-size:13px}
+main{padding:8px 0 60px}
+.group{background:var(--sheet);border:1px solid var(--rule);border-radius:10px;margin:20px 0;overflow:hidden;scroll-margin-top:70px}
+.group-head{padding:16px 20px 12px;border-top:5px solid var(--c)}
+.group-head h2{font:600 22px/1.2 var(--serif);margin:0}
+.group-head p{margin:3px 0 0;color:var(--ink-2);font-size:13px}
+.prio{display:inline-block;font-size:12px;font-weight:600;background:var(--c);color:#fff;border-radius:4px;padding:2px 7px;margin-left:8px;vertical-align:3px}
+ul.members{list-style:none;margin:0;padding:6px 12px 16px;columns:4 230px;column-gap:8px}
+ul.members li{break-inside:avoid}
+ul.members button{all:unset;box-sizing:border-box;display:flex;justify-content:space-between;gap:8px;width:100%;padding:5px 8px;border-radius:6px;cursor:pointer;font-size:14px}
+ul.members button:hover{background:var(--paper)}
+ul.members button:focus-visible{outline:2px solid var(--focus)}
+ul.members small{color:var(--ink-3);font-variant-numeric:tabular-nums}
+.empty{padding:0 20px 14px;color:var(--ink-3);font-size:13px;display:none}
+.slist{background:var(--sheet);border:1px solid var(--rule);border-radius:10px;margin:20px 0;padding:0;list-style:none}
+.slist li{border-top:1px solid var(--rule)}.slist li:first-child{border-top:0}
+.slist button{all:unset;box-sizing:border-box;display:block;width:100%;padding:12px 18px;cursor:pointer}
+.slist button:hover{background:var(--paper)}
+.slist .t{display:block}
+.meta-line{color:var(--ink-3);font-size:13px;font-variant-numeric:tabular-nums}
+.more{display:block;margin:14px auto}
+.btn{font:inherit;font-size:13px;font-weight:600;padding:7px 12px;border-radius:7px;border:1px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink)}
+.scrim{position:fixed;inset:0;background:rgba(22,32,46,.35);z-index:40;display:none}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(720px,100%);background:var(--sheet);z-index:50;transform:translateX(100%);transition:transform .22s ease;display:flex;flex-direction:column;box-shadow:-12px 0 40px rgba(22,32,46,.18)}
+.drawer.open{transform:none}
+.d-head{padding:20px 26px 16px;border-top:6px solid var(--c,var(--ink));border-bottom:1px solid var(--rule)}
+.d-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.d-kicker{font-size:13px;color:var(--ink-2);display:flex;align-items:center;gap:7px}
+.d-kicker i{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.d-head h2{font:600 28px/1.15 var(--serif);margin:6px 0 4px}
+.d-sub{color:var(--ink-2);font-size:14px;margin:0 0 10px}
+.close{all:unset;cursor:pointer;font-size:26px;line-height:1;padding:2px 8px;border-radius:6px;color:var(--ink-2)}
+.close:hover{background:var(--paper)}
+.links a{font-size:13px;text-decoration:none;border:1px solid var(--rule);border-radius:6px;padding:5px 10px;display:inline-block;margin:0 6px 4px 0}
+.d-body{overflow:auto;padding:16px 26px 30px;flex:1}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:16px}
+.stat{border:1px solid var(--rule);border-radius:8px;padding:10px 12px}
+.stat b{display:block;font:600 24px/1.1 var(--serif);font-variant-numeric:tabular-nums}
+.stat span{font-size:12px;color:var(--ink-2)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+.filters input[type=search]{flex:1 1 200px}
+.filters label{font-size:13px;display:flex;gap:6px;align-items:center}
+.vlist{list-style:none;margin:0;padding:0}
+.vlist li{padding:10px 0;border-top:1px solid var(--rule)}
+.vote{display:inline-block;font-size:12px;font-weight:600;border-radius:4px;padding:1px 7px;margin-right:6px;white-space:nowrap}
+.v-P{background:#e3f1e6;color:#1d6b33}.v-C{background:#f8e2e2;color:#9b1c1c}.v-A{background:#eceef1;color:#4a5566}.v-N{background:#eef0fb;color:#3b4a8f}.v-X{background:#fff;color:#7c8696;border:1px dashed #c9cfd8}
+.div{font-size:12px;font-weight:600;color:#8a4b00;background:#fff3df;border-radius:4px;padding:1px 6px;margin-left:4px}
+.note{font-size:13px;color:var(--ink-2);font-style:italic}
+.syn h3{font:600 17px/1.3 var(--serif);margin:18px 0 6px;padding-bottom:5px;border-bottom:1px solid var(--rule)}
+.syn .resume{font:16px/1.6 var(--serif);margin:0 0 8px}
+.syn ul{margin:0;padding-left:18px}.syn li{margin:7px 0}
+.syn .src{display:block;font-size:12px;color:var(--ink-3)}.syn .src a{color:inherit}
+.syn .sanction{border-left:3px solid #9b1c1c;padding-left:10px}
+.syn-badge{display:inline-block;font-size:11px;font-weight:600;color:#1d6b33;background:#e3f1e6;border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:1px}
+.gblock{border-top:1px solid var(--rule);padding:12px 0}
+.gblock h3{font:600 16px/1.3 var(--serif);margin:0 0 6px;display:flex;align-items:center;gap:8px}
+.gblock h3 i{width:9px;height:9px;border-radius:50%}
+.gblock p{margin:4px 0;font-size:14px}
+.gblock .names button{all:unset;cursor:pointer;text-decoration:underline;text-decoration-color:var(--rule);text-underline-offset:3px}
+.gblock .names button:hover{text-decoration-color:var(--ink)}
+footer{border-top:1px solid var(--rule);padding:20px 0 40px;color:var(--ink-3);font-size:12px}
+@media (max-width:640px){.wrap{padding:0 14px}.d-head,.d-body{padding-left:16px;padding-right:16px}}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <h1>Suivi nominatif des votes à l'Assemblée nationale</h1>
+  <p class="lede" id="lede"></p>
+  <div class="hemi" id="hemi">
+    <svg id="hemi-svg" viewBox="0 0 1000 520" role="img" aria-label="Répartition des sièges par groupe"></svg>
+    <div class="hemi-center"><b id="total"></b><span>députés en fonction</span></div>
+  </div>
+  <nav class="legend" id="legend" aria-label="Aller au groupe"></nav>
+</header>
+
+<div class="bar"><div class="wrap">
+  <div class="tabs" role="tablist">
+    <button role="tab" aria-selected="true" id="tab-d">Députés</button>
+    <button role="tab" aria-selected="false" id="tab-s">Scrutins</button>
+  </div>
+  <input id="q" type="search" placeholder="Rechercher un député…" aria-label="Rechercher">
+  <select id="stype" aria-label="Type de scrutin" hidden></select>
+  <span class="count" id="count"></span>
+</div></div>
+
+<main class="wrap"><div id="view-d"></div><div id="view-s" hidden></div></main>
+
+<footer class="wrap" id="foot"></footer>
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="d-title"><div id="d-inner" style="display:contents"></div></aside>
+<div class="tip" id="tip"></div>
+
+<script>
+const D = /*__DONNEES__*/null;
+const $ = id => document.getElementById(id);
+const esc = s => String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const norm = s => String(s||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+const fmtDate = s => s ? new Date(s+"T12:00:00").toLocaleDateString("fr-FR",{day:"numeric",month:"long",year:"numeric"}) : "";
+const pct = (a,b) => b ? Math.round(1000*a/b)/10 : 0;
+const urlScrutin = n => `https://www.assemblee-nationale.fr/dyn/${D.legislature}/scrutins/${n}`;
+const urlDepute = id => `https://www2.assemblee-nationale.fr/deputes/fiche/${id}`;
+const S = D.scrutins; // [num, date, titre, sort, type, pour, contre, abst]
+const G = Object.fromEntries(D.groupes.map(g=>[g.k,g]));
+const DEP = D.deputes; const BYID = Object.fromEntries(DEP.map(d=>[d.id,d]));
+for (const g of D.groupes) g.members = DEP.filter(d=>d.g===g.k);
+const LAB = {P:"Pour",C:"Contre",A:"Abstention",N:"Non votant",X:"Absent"};
+const TYPES = {ensemble:"Vote sur l'ensemble d'un texte",motion:"Motion (censure, rejet…)",amendement:"Amendement",article:"Article",declaration:"Déclaration",autre:"Autre"};
+const titreCourt = t => t.replace(/^(scrutin public n°\s*\d+\s*)?sur\s+/i,"");
+const sortLab = s => s.startsWith("adopt") ? "Adopté" : s.startsWith("rejet") ? "Rejeté" : (s||"—");
+
+/* ---------- statistiques par député (calcul paresseux) ---------- */
+function stats(d){
+  if (d._st) return d._st;
+  let elig=0,P=0,C=0,A=0,N=0,div=0;
+  for (let i=0;i<S.length;i++){
+    if (d.debut && S[i][1] < d.debut && d.v[i]===".") continue;
+    elig++; const c=d.v[i];
+    if (c==="."){continue;}
+    const u=c.toUpperCase(); if(u==="P")P++; else if(u==="C")C++; else if(u==="A")A++; else if(u==="N")N++;
+    if (c!==u) div++;
+  }
+  const exp=P+C+A;
+  return d._st={elig,P,C,A,N,exp,div,part:pct(exp,elig),divp:pct(div,exp)};
+}
+
+/* ---------- en-tête ---------- */
+const last = S[S.length-1];
+$("lede").textContent = `${S.length.toLocaleString("fr-FR")} scrutins publics de la ${D.legislature}e législature, du n° ${S[0][0]} (${fmtDate(S[0][1])}) au n° ${last[0]} (${fmtDate(last[1])}). Pour chaque député en fonction : tous ses votes nominatifs, sa participation et ses votes différents de la majorité de son groupe.`;
+$("total").textContent = DEP.length;
+$("foot").textContent = `Source : données ouvertes de l'Assemblée nationale (data.assemblee-nationale.fr), scrutins publics et composition des groupes. Site généré le ${D.genere}. Seuls les scrutins publics donnent lieu à un vote nominatif ; les votes à main levée ne sont pas enregistrés individuellement. La participation est calculée sur les scrutins tenus depuis la prise de fonction du député.`;
+
+/* ---------- hémicycle ---------- */
+(function(){
+  const svg=$("hemi-svg"), N=DEP.length, rows=12, r0=.36, cx=500, cy=505, R=480;
+  const radii=Array.from({length:rows},(_,i)=>r0+(1-r0)*i/(rows-1)), sum=radii.reduce((a,b)=>a+b,0);
+  const counts=radii.map(r=>Math.round(N*r/sum)); counts[rows-1]+=N-counts.reduce((a,b)=>a+b,0);
+  const seats=[]; radii.forEach((r,i)=>{for(let j=0;j<counts[i];j++){const a=Math.PI*(1-j/Math.max(1,counts[i]-1));seats.push({a,x:cx+R*r*Math.cos(a),y:cy-R*r*Math.sin(a)});}});
+  seats.sort((p,q)=>q.a-p.a);
+  const ordered=D.groupes.flatMap(g=>g.members);
+  svg.innerHTML=seats.map((s,i)=>{const d=ordered[i];return `<circle cx="${s.x.toFixed(1)}" cy="${s.y.toFixed(1)}" r="8" fill="${G[d.g].c}" data-id="${d.id}" data-g="${d.g}"></circle>`}).join("");
+  const tip=$("tip"), hemi=$("hemi");
+  svg.addEventListener("mousemove",e=>{const c=e.target.closest("circle"); if(!c){tip.style.display="none";return;}
+    const d=BYID[c.dataset.id]; tip.innerHTML=`${esc(d.civ+" "+d.nom)}<small>${esc(G[d.g].n)}</small>`;
+    tip.style.display="block"; tip.style.left=(e.clientX+14)+"px"; tip.style.top=(e.clientY+14)+"px";});
+  svg.addEventListener("mouseleave",()=>tip.style.display="none");
+  svg.addEventListener("click",e=>{const c=e.target.closest("circle"); if(c) openDepute(c.dataset.id);});
+  $("legend").innerHTML=D.groupes.map(g=>`<a href="#g-${g.k}" data-g="${g.k}"><i style="background:${g.c}"></i>${esc(g.n)} <em>${g.members.length}</em></a>`).join("");
+  $("legend").addEventListener("mouseover",e=>{const a=e.target.closest("a"); if(!a)return; hemi.classList.add("dim");
+    svg.querySelectorAll("circle").forEach(c=>c.classList.toggle("on",c.dataset.g===a.dataset.g));});
+  $("legend").addEventListener("mouseleave",()=>hemi.classList.remove("dim"));
+  $("legend").addEventListener("click",()=>setTab("d"));
+})();
+
+/* ---------- vue Députés ---------- */
+const listOrder=[...D.groupes].sort((a,b)=>(b.k==="LFI")-(a.k==="LFI")||(a.k==="NI")-(b.k==="NI")||b.members.length-a.members.length);
+$("view-d").innerHTML=listOrder.map(g=>`
+<section class="group" id="g-${g.k}" style="--c:${g.c}">
+  <div class="group-head"><h2>${esc(g.n)}${g.k==="LFI"?'<span class="prio">Suivi prioritaire</span>':""}</h2>
+  <p>${g.members.length} député${g.members.length>1?"s":""}. Chiffre à droite : taux de participation aux scrutins publics.</p></div>
+  <ul class="members">${g.members.map(d=>`<li data-n="${esc(norm(d.nom))}"><button data-id="${d.id}"><span>${esc(d.nom)}</span><small>${D.syntheses&&D.syntheses[d.id]?'<span class="syn-badge">fiche</span> ':''}${stats(d).part} %</small></button></li>`).join("")}</ul>
+  <p class="empty">Aucun député ne correspond à la recherche dans ce groupe.</p>
+</section>`).join("");
+$("view-d").addEventListener("click",e=>{const b=e.target.closest("button[data-id]"); if(b) openDepute(b.dataset.id);});
+
+/* ---------- vue Scrutins ---------- */
+$("stype").innerHTML=`<option value="">Tous les types</option>`+Object.entries(TYPES).map(([k,v])=>`<option value="${k}">${v}</option>`).join("");
+let sShown=0, sRows=[];
+function filterScrutins(){
+  const q=norm($("q").value.trim()), t=$("stype").value;
+  sRows=[]; for(let i=S.length-1;i>=0;i--){const s=S[i]; if(t&&s[4]!==t)continue;
+    if(q && !norm(s[2]).includes(q) && String(s[0])!==q) continue; sRows.push(i);}
+  sShown=0; $("view-s").innerHTML=`<ul class="slist" id="slist"></ul><button class="btn ghost more" id="smore">Afficher 100 scrutins de plus</button>`;
+  $("smore").onclick=moreScrutins; moreScrutins();
+  $("count").textContent=`${sRows.length.toLocaleString("fr-FR")} scrutin${sRows.length>1?"s":""}`;
+}
+function moreScrutins(){
+  const part=sRows.slice(sShown,sShown+100); sShown+=part.length;
+  $("slist").insertAdjacentHTML("beforeend",part.map(i=>{const s=S[i];return `<li><button data-i="${i}"><span class="t">${esc(titreCourt(s[2]))}</span>
+   <span class="meta-line">N° ${s[0]}, ${fmtDate(s[1])}. ${sortLab(s[3])} : ${s[5]} pour, ${s[6]} contre, ${s[7]} abstention${s[7]>1?"s":""}.</span></button></li>`}).join(""));
+  $("smore").hidden = sShown>=sRows.length;
+}
+$("view-s").addEventListener("click",e=>{const b=e.target.closest("button[data-i]"); if(b) openScrutin(+b.dataset.i);});
+
+/* ---------- recherche / onglets ---------- */
+let tab="d";
+function setTab(t){ tab=t; $("tab-d").setAttribute("aria-selected",t==="d"); $("tab-s").setAttribute("aria-selected",t==="s");
+  $("view-d").hidden=t!=="d"; $("view-s").hidden=t!=="s"; $("stype").hidden=t!=="s";
+  $("q").placeholder = t==="d" ? "Rechercher un député…" : "Rechercher un scrutin (mot-clé ou numéro)…";
+  $("q").value=""; t==="d"?filterDeputes():filterScrutins(); }
+$("tab-d").onclick=()=>setTab("d"); $("tab-s").onclick=()=>setTab("s");
+function filterDeputes(){
+  const q=norm($("q").value.trim()); let n=0;
+  document.querySelectorAll(".group").forEach(sec=>{let v=0;
+    sec.querySelectorAll("li").forEach(li=>{const ok=!q||li.dataset.n.includes(q); li.hidden=!ok; if(ok)v++;});
+    sec.querySelector(".empty").style.display=v?"none":"block"; sec.hidden=!!q&&!v; n+=v;});
+  $("count").textContent = n===DEP.length?`${n} députés`:`${n} résultat${n>1?"s":""}`;
+}
+let qTimer; $("q").addEventListener("input",()=>{clearTimeout(qTimer); qTimer=setTimeout(()=>tab==="d"?filterDeputes():filterScrutins(),150);});
+$("stype").addEventListener("change",filterScrutins);
+filterDeputes();
+
+/* ---------- panneau ---------- */
+let lastFocus=null;
+function openDrawer(color,html){
+  lastFocus=lastFocus||document.activeElement;
+  const dr=$("drawer"); dr.style.setProperty("--c",color); $("d-inner").innerHTML=html;
+  dr.classList.add("open"); dr.setAttribute("aria-hidden","false"); $("scrim").style.display="block";
+  $("d-close").onclick=closeDrawer; $("d-close").focus();
+}
+function closeDrawer(){ const dr=$("drawer"); dr.classList.remove("open"); dr.setAttribute("aria-hidden","true"); $("scrim").style.display="none"; lastFocus?.focus(); lastFocus=null; }
+$("scrim").onclick=closeDrawer;
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&$("drawer").classList.contains("open"))closeDrawer();});
+const badge=c=>{const u=c==="."?"X":c.toUpperCase(); return `<span class="vote v-${u}">${LAB[u]}</span>`;};
+
+/* ---------- synthèse documentée (syntheses.json) ---------- */
+function synthese(d){
+  const f=D.syntheses&&D.syntheses[d.id]; if(!f) return "";
+  const src=x=>x.source?`<span class="src">Source : ${x.url?`<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.source)}</a>`:esc(x.source)}</span>`:"";
+  const sec=(t,arr,fn,cls="")=>arr&&arr.length?`<h3>${t}</h3><ul>${arr.map(x=>`<li class="${cls}">${fn(x)}${src(x)}</li>`).join("")}</ul>`:"";
+  return `<div class="syn">
+   ${f.resume?`<p class="resume">${esc(f.resume)}</p>`:""}
+   ${sec("Sanctions, poursuites et procédures",f.sanctions,x=>`<span class="date">${esc(x.date)}</span> ${esc(x.detail)}`,"sanction")}
+   ${sec("Prises de position",f.positions,x=>`<b>${esc(x.sujet)}.</b> ${esc(x.detail)}`)}
+   ${sec("Actions et initiatives",f.actions,x=>`<span class="date">${esc(x.date)}</span> ${esc(x.detail)}`)}
+   ${sec("Propositions de loi",f.propositions,x=>`${esc(x.titre)} <span class="date">${esc(x.date)}${x.role?", "+esc(x.role):""}</span>`)}
+   <p class="meta-line">Synthèse documentée rédigée le ${fmtDate(f.redige)} à partir des sources citées.</p></div>`;
+}
+/* ---------- fiche député ---------- */
+let cur=null, vRows=[], vShown=0;
+function openDepute(id){
+  const d=BYID[id], g=G[d.g], st=stats(d); cur=d;
+  openDrawer(g.c,`
+  <div class="d-head"><div class="d-top"><div class="d-kicker"><i></i>${esc(g.n)}${d.qualite&&!/^membre$/i.test(d.qualite)?" ("+esc(d.qualite.toLowerCase())+")":""}</div>
+   <button class="close" id="d-close" aria-label="Fermer">×</button></div>
+   <h2 id="d-title">${esc(d.civ+" "+d.nom)}</h2>
+   <p class="d-sub">${esc(d.circo)}${d.debut?` · en fonction depuis le ${fmtDate(d.debut)}`:""}</p>
+   <div class="links"><a href="${urlDepute(d.id)}" target="_blank" rel="noopener">Fiche officielle</a><button class="btn ghost" id="csv">Exporter ses votes (CSV)</button></div></div>
+  <div class="d-body">
+   <div class="stats">
+    <div class="stat"><b>${st.part} %</b><span>participation (${st.exp} sur ${st.elig} scrutins)</span></div>
+    <div class="stat"><b>${st.P}</b><span>pour</span></div>
+    <div class="stat"><b>${st.C}</b><span>contre</span></div>
+    <div class="stat"><b>${st.A}</b><span>abstentions</span></div>
+    <div class="stat"><b>${st.div}</b><span>votes différents de la majorité de son groupe (${st.divp} %)</span></div>
+   </div>
+   ${synthese(d)}
+   <h3 style="font:600 17px/1.3 var(--serif);margin:14px 0 8px;padding-bottom:5px;border-bottom:1px solid var(--rule)">Tous ses votes nominatifs</h3>
+   <div class="filters">
+    <input type="search" id="fq" placeholder="Filtrer par mot-clé ou numéro…" aria-label="Filtrer les votes">
+    <select id="fp" aria-label="Position"><option value="">Toutes positions</option><option value="P">Pour</option><option value="C">Contre</option><option value="A">Abstention</option><option value="N">Non votant</option><option value="X">Absent</option></select>
+    <select id="ft" aria-label="Type"><option value="">Tous les types</option>${Object.entries(TYPES).map(([k,v])=>`<option value="${k}">${v}</option>`).join("")}</select>
+    <label><input type="checkbox" id="fd"> Seulement les votes différents de son groupe</label>
+   </div>
+   <p class="meta-line" id="fcount"></p>
+   <ul class="vlist" id="vlist"></ul>
+   <button class="btn ghost more" id="vmore">Afficher 100 votes de plus</button>
+  </div>`);
+  ["fq","fp","ft","fd"].forEach(k=>$(k).addEventListener("input",filterVotes));
+  $("vmore").onclick=moreVotes; $("csv").onclick=()=>exportCsv(d);
+  filterVotes();
+}
+function eligible(d,i){ return !(d.debut && S[i][1] < d.debut && d.v[i]==="."); }
+function filterVotes(){
+  const d=cur, q=norm($("fq").value.trim()), p=$("fp").value, t=$("ft").value, dv=$("fd").checked;
+  vRows=[]; for(let i=S.length-1;i>=0;i--){ if(!eligible(d,i))continue; const c=d.v[i], u=c==="."?"X":c.toUpperCase();
+    if(p&&u!==p)continue; if(t&&S[i][4]!==t)continue; if(dv&&!(c!=="."&&c!==u))continue;
+    if(q&&!norm(S[i][2]).includes(q)&&String(S[i][0])!==q)continue; vRows.push(i);}
+  vShown=0; $("vlist").innerHTML=""; $("fcount").textContent=`${vRows.length.toLocaleString("fr-FR")} scrutin${vRows.length>1?"s":""}`; moreVotes();
+}
+function moreVotes(){
+  const d=cur, part=vRows.slice(vShown,vShown+100); vShown+=part.length;
+  $("vlist").insertAdjacentHTML("beforeend",part.map(i=>{const s=S[i], c=d.v[i]; const div=c!=="."&&c!==c.toUpperCase();
+   return `<li>${badge(c)}${div?'<span class="div">Différent de son groupe</span>':""}
+    <a href="${urlScrutin(s[0])}" target="_blank" rel="noopener">${esc(titreCourt(s[2]))}</a>
+    <br><span class="meta-line">N° ${s[0]}, ${fmtDate(s[1])}. ${sortLab(s[3])} : ${s[5]} pour, ${s[6]} contre, ${s[7]} abst.</span>
+    ${d.notes[i]?`<br><span class="note">${esc(d.notes[i])}</span>`:""}</li>`}).join(""));
+  $("vmore").hidden=vShown>=vRows.length;
+}
+function exportCsv(d){
+  const q=v=>`"${String(v).replace(/"/g,'""')}"`;
+  const lines=[["numero","date","scrutin","resultat","pour","contre","abstentions","vote","different_du_groupe","mise_au_point"].join(";")];
+  for(let i=S.length-1;i>=0;i--){ if(!eligible(d,i))continue; const s=S[i], c=d.v[i], u=c==="."?"X":c.toUpperCase();
+    lines.push([s[0],s[1],q(titreCourt(s[2])),sortLab(s[3]),s[5],s[6],s[7],LAB[u],(c!=="."&&c!==u)?"oui":"non",q(d.notes[i]||"")].join(";"));}
+  const blob=new Blob(["\ufeff"+lines.join("\n")],{type:"text/csv;charset=utf-8"});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=`votes_${norm(d.nom).replace(/[^a-z0-9]+/g,"-")}.csv`; a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),2000);
+}
+
+/* ---------- fiche scrutin : vote nominatif de chaque député ---------- */
+function openScrutin(i){
+  const s=S[i];
+  const blocks=D.groupes.map(g=>{
+    const by={P:[],C:[],A:[],N:[],X:[]};
+    for(const d of g.members){ if(!eligible(d,i))continue; const c=d.v[i]; by[c==="."?"X":c.toUpperCase()].push(d); }
+    const tot=by.P.length+by.C.length+by.A.length+by.N.length+by.X.length; if(!tot) return "";
+    const names=arr=>arr.map(d=>`<button data-id="${d.id}">${esc(d.nom)}</button>`).join(", ");
+    return `<div class="gblock"><h3><i style="background:${g.c}"></i>${esc(g.n)}</h3>
+     ${["P","C","A","N"].filter(k=>by[k].length).map(k=>`<p><span class="vote v-${k}">${LAB[k]} : ${by[k].length}</span> <span class="names">${names(by[k])}</span></p>`).join("")}
+     ${by.X.length?`<p class="meta-line">Absents : ${by.X.length}</p>`:""}</div>`;
+  }).join("");
+  openDrawer("#16202e",`
+  <div class="d-head"><div class="d-top"><div class="d-kicker">Scrutin public n° ${s[0]}, ${fmtDate(s[1])}</div><button class="close" id="d-close" aria-label="Fermer">×</button></div>
+   <h2 id="d-title" style="font-size:22px">${esc(titreCourt(s[2]))}</h2>
+   <p class="d-sub">${sortLab(s[3])} : ${s[5]} pour, ${s[6]} contre, ${s[7]} abstention${s[7]>1?"s":""} (décompte officiel).</p>
+   <div class="links"><a href="${urlScrutin(s[0])}" target="_blank" rel="noopener">Analyse officielle du scrutin</a></div></div>
+  <div class="d-body"><p class="meta-line">Vote nominatif des députés actuellement en fonction, par groupe actuel. Cliquez sur un nom pour ouvrir sa fiche.</p>${blocks}</div>`);
+  $("d-inner").querySelectorAll(".names button").forEach(b=>b.onclick=()=>openDepute(b.dataset.id));
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+{
+  "_note": "Synthèses factuelles rédigées à partir de sources publiques. Chaque élément cite sa source. Lot 1 rédigé le 11 octobre 2026.",
+  "PA720892": {
+    "nom": "Mathilde Panot",
+    "redige": "2026-10-11",
+    "resume": "Députée de la 10e circonscription du Val-de-Marne, réélue au premier tour en 2024 avec 59 % des suffrages. Présidente du groupe La France insoumise – Nouveau Front populaire à l'Assemblée nationale. Treize propositions de loi déposées en premier signataire sous la XVIIe législature.",
+    "positions": [
+      {"sujet": "Ordre public et manifestations", "detail": "Le 5 octobre 2026, elle qualifie le projet de loi dit « casseurs-payeurs » d'arme de répression massive contre les manifestations et estime qu'il instaure une présomption de culpabilité.", "source": "franceinfo, 5 octobre 2026", "url": "https://www.franceinfo.fr/s/mathilde-panot/"},
+      {"sujet": "Forces de l'ordre", "detail": "Vote contre la proposition de loi créant une présomption de légitime défense pour les forces de l'ordre (7 juillet 2026) et contre le projet de loi sur les réponses immédiates aux troubles à l'ordre public (texte de la CMP, 21 juillet 2026).", "source": "Assemblée nationale, positions de vote", "url": "https://www.assemblee-nationale.fr/dyn/deputes/PA720892/positions-de-vote"},
+      {"sujet": "Fiscalité et questions de société", "detail": "Vote pour la taxe Zucman sur les patrimoines supérieurs à 100 millions d'euros, pour le droit à l'aide à mourir (lecture définitive, 15 juillet 2026), contre la réautorisation de l'acétamipride (loi d'urgence agricole, 20 juillet 2026) et contre la proposition du RN de dénoncer les accords franco-algériens de 1968.", "source": "Datan", "url": "https://datan.fr/deputes/val-de-marne-94/depute_mathilde-panot"}
+    ],
+    "actions": [
+      {"date": "2025-10", "detail": "Rappels au règlement répétés pendant l'examen du projet de loi de finances pour 2026, contestant l'organisation des débats et l'hypothèse d'un recours aux ordonnances, à laquelle la ministre des comptes publics répond en séance.", "source": "Compte rendu, 1re séance du 29 octobre 2025", "url": "https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/seance/session-ordinaire-de-2025-2026/premiere-seance-du-mercredi-29-octobre-2025"},
+      {"date": "2025-11", "detail": "Rappels au règlement sur l'article 50 du Règlement lors de la prolongation des séances consacrées au PLFSS 2026.", "source": "Compte rendu, 3e séance du 9 novembre 2025", "url": "https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/seance/session-ordinaire-de-2025-2026/troisieme-seance-du-dimanche-09-novembre-2025"}
+    ],
+    "propositions": [
+      {"titre": "Proposition de loi d'urgence visant à rétablir l'interdiction de l'acétamipride et du flupyradifurone", "date": "2026", "role": "première signataire", "source": "NosParlementaires", "url": "https://nosparlementaires.fr/depute/mathilde-panot"}
+    ],
+    "sanctions": []
+  },
+  "PA793444": {
+    "nom": "Manuel Bompard",
+    "redige": "2026-10-11",
+    "resume": "Député de la 4e circonscription des Bouches-du-Rhône, réélu au premier tour en 2024 avec 67 % des suffrages. Coordinateur national de La France insoumise depuis décembre 2022, ancien député européen (2019-2022) et ancien directeur de campagne de Jean-Luc Mélenchon. Participation de 95 % aux votes solennels.",
+    "positions": [
+      {"sujet": "Institutions, août 2024", "detail": "Après le refus du président de la République de nommer Lucie Castets à Matignon, il parle d'un coup de force anti-démocratique, annonce la ligne « censure, mobilisation, destitution », promet une motion de censure contre tout gouvernement qui ne serait pas issu du Nouveau Front populaire et appelle les députés à voter la destitution du président.", "source": "Europe 1 / CNews, 28 août 2024", "url": "https://www.europe1.fr/node/13427"},
+      {"sujet": "Gouvernement Lecornu, septembre 2025", "detail": "Annonce le dépôt d'une motion de censure pour un vote à l'issue de la déclaration de politique générale, juge les orientations budgétaires dans la continuité des précédentes et critique la participation des socialistes aux négociations. Réaffirme l'opposition de son groupe à l'entrée du RN au bureau de l'Assemblée.", "source": "LCP, 29 septembre 2025", "url": "https://lcp.fr/actualites/manuel-bompard-confirme-le-depot-d-une-motion-de-censure-pour-un-vote-a-l-issue-de-la"},
+      {"sujet": "Immigration", "detail": "Vote contre le projet de loi immigration de 2023.", "source": "Datan", "url": "https://datan.fr/deputes/bouches-du-rhone-13/depute_manuel-bompard"}
+    ],
+    "actions": [
+      {"date": "2026-03", "detail": "Candidat en 29e position sur la liste LFI conduite par Sébastien Delogu aux élections municipales de Marseille ; campagne nationale de soutien aux listes LFI (déplacement à Nîmes en janvier 2026).", "source": "Objectif Gard, 18 janvier 2026", "url": "https://www.objectifgard.com/actualites/nimes-municipales-2026-manuel-bompard-lfi-au-2e-tour-on-organisera-le-rassemblement-avec-vincent-bouget-158215.php"}
+    ],
+    "propositions": [],
+    "sanctions": []
+  },
+  "PA721202": {
+    "nom": "Éric Coquerel",
+    "redige": "2026-10-11",
+    "resume": "Député de la 1re circonscription de la Seine-Saint-Denis, réélu au premier tour en 2024 avec 65 % des suffrages. Président de la commission des finances depuis 2022, reconduit sous la XVIIe législature ; a présidé la commission mixte paritaire sur le projet de loi de finances pour 2026 (19 décembre 2025). Participation de 87 % aux votes solennels, inférieure à la moyenne de son groupe ; vote avec son groupe dans 95 % des cas.",
+    "positions": [
+      {"sujet": "Budget 2026", "detail": "Dénonce un budget qu'il juge austéritaire, reproche aux socialistes de rechercher un compromis avec le gouvernement et alerte sur l'enlisement des débats, qui ouvrirait la voie aux ordonnances en cas de dépassement des délais constitutionnels.", "source": "Public Sénat", "url": "https://www.publicsenat.fr/actualites/politique/budget-2026-je-ne-sais-plus-ou-habitent-les-socialistes-affirme-eric-coquerel"},
+      {"sujet": "Retraites", "detail": "A voté contre la suspension de la réforme des retraites jusqu'au 1er janvier 2028.", "source": "Datan", "url": "https://datan.fr/deputes/seine-saint-denis-93/depute_eric-coquerel"}
+    ],
+    "actions": [
+      {"date": "2025-10", "detail": "Lors de son élection à la présidence de la commission des finances, s'engage à une organisation impartiale des travaux, y compris pour l'examen du budget.", "source": "Compte rendu de la commission des finances, élection du bureau", "url": "https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/cion_fin/l17cion_fin2526147_compte-rendu.pdf"},
+      {"date": "2026-01", "detail": "Conduit l'examen en lecture définitive du PLF 2026 ; la commission vote contre le texte. Il relève 141 heures de débats en commission sur ce budget.", "source": "Compte rendu de la commission des finances, 30 janvier 2026", "url": "https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/cion_fin/l17cion_fin2526067_compte-rendu.pdf"},
+      {"date": "2026-08", "detail": "Réclame un projet de loi de finances rectificative en session extraordinaire pour financer la lutte contre les incendies, après des demandes similaires en avril (conséquences de la guerre en Iran) et en juin (canicule).", "source": "LCP, 4 août 2026", "url": "https://lcp.fr/actualites/budget-2026-le-president-de-la-commission-des-finances-eric-coquerel-lfi-veut-une-loi"}
+    ],
+    "propositions": [],
+    "sanctions": []
+  },
+  "PA793464": {
+    "nom": "Sébastien Delogu",
+    "redige": "2026-10-11",
+    "resume": "Député de la 7e circonscription des Bouches-du-Rhône depuis 2022, ancien chauffeur de taxi entré en politique par la lutte contre l'ubérisation de son métier. Tête de liste LFI aux élections municipales de Marseille en mars 2026.",
+    "positions": [],
+    "actions": [
+      {"date": "2024-05", "detail": "Brandit un drapeau palestinien dans l'hémicycle pendant les questions au gouvernement, provoquant la suspension de la séance. Déclare ensuite ne pas se soucier de la sanction qui lui serait infligée.", "source": "LCP, 28 mai 2024", "url": "https://lcp.fr/actualites/drapeau-palestinien-brandi-dans-l-hemicycle-sebastien-delogu-lfi-exclu-de-l-assemblee"}
+    ],
+    "propositions": [],
+    "sanctions": [
+      {"date": "2024-05-28", "detail": "Censure avec exclusion temporaire, sanction la plus forte prévue par le Règlement : interdiction de participer aux travaux et de paraître au Palais-Bourbon pendant quinze jours de séance, et privation de la moitié de l'indemnité parlementaire pendant deux mois. Fondement : article 70, alinéas 2 et 5 (manifestations troublant l'ordre, provocations envers l'Assemblée). Proposée par le Bureau à une large majorité et votée par l'Assemblée ; quatrième application de cette sanction sous la Ve République.", "source": "Communiqué de la Présidence de l'Assemblée nationale, 28 mai 2024", "url": "https://presidence-16-braun-pivet.assemblee-nationale.fr/pdf/show/37311/communiquePressePDF/Communique%CC%81%20de%20la%20Pre%CC%81sidente%20-28%20mai%202024.pdf"}
+    ]
+  },
+  "PA721960": {
+    "nom": "Danièle Obono",
+    "redige": "2026-10-11",
+    "resume": "Députée de la 17e circonscription de Paris depuis 2017.",
+    "positions": [
+      {"sujet": "Hamas, octobre 2023", "detail": "Le 17 octobre 2023 sur Sud Radio, interrogée à plusieurs reprises, elle répond « oui » à la question de savoir si le Hamas est un mouvement de résistance, puis explique qu'il s'agit selon elle d'un groupe politique islamiste doté d'une branche armée s'inscrivant dans les formations palestiniennes. Elle dénonce ensuite sur X des manipulations. Le groupe LFI prend sa défense.", "source": "LCP, 17 octobre 2023", "url": "https://lcp.fr/actualites/propos-de-daniele-obono-lfi-sur-le-hamas-gerald-darmanin-saisit-le-procureur-de-la"},
+      {"sujet": "Lutte contre l'antisémitisme", "detail": "Désignée par LFI pour présenter, lors d'une réunion publique à Nice le 19 septembre, une résolution du mouvement contre le racisme et l'antisémitisme ; ce choix est contesté par une association en raison de ses propos de 2023.", "source": "i24news", "url": "https://www.i24news.tv/fr/actu/france/artc-lfi-confie-a-daniele-obono-une-reunion-sur-l-antisemitisme-malgre-ses-propos-sur-le-hamas"}
+    ],
+    "actions": [],
+    "propositions": [],
+    "sanctions": [
+      {"date": "2023-10-17", "detail": "Le ministre de l'Intérieur saisit le procureur de la République pour apologie du terrorisme à la suite de ses propos sur le Hamas ; le président des Républicains demande la levée de son immunité parlementaire ; la Première ministre accuse LFI d'agir contre les valeurs de la République en refusant de qualifier le Hamas de terroriste.", "source": "Slate / justiceinfo.net", "url": "https://www.justiceinfo.net/en?p=123323"},
+      {"date": "2024-01-19", "detail": "Visée, avec d'autres responsables politiques, par les plaintes et signalements déposés auprès du parquet national antiterroriste par l'association Jeunesse Française Juive pour apologie du terrorisme (article 421-2-5 du code pénal).", "source": "Actu-Juridique", "url": "https://www.actu-juridique.fr/penal/plusieurs-personnalites-dont-jean-luc-melenchon-thomas-portes-et-daniele-obono-vises-par-une-plainte-pour-apologie-du-terrorisme/"}
+    ]
+  }
+}

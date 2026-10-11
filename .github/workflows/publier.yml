@@ -1,0 +1,43 @@
+name: Générer et publier le suivi des votes
+
+on:
+  schedule:
+    - cron: "0 5 * * *"      # chaque jour à 7 h (heure de Paris, hiver)
+  workflow_dispatch:          # bouton "Run workflow" pour lancer à la demande
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  generer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Générer le site
+        run: |
+          python3 generer_suivi.py --sortie index.html
+          mkdir -p _site && mv index.html _site/index.html
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  publier:
+    needs: generer
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploiement.outputs.page_url }}
+    steps:
+      - id: deploiement
+        uses: actions/deploy-pages@v4
