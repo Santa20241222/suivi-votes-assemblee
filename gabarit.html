@@ -98,7 +98,7 @@ ul.members small{color:var(--ink-3);font-variant-numeric:tabular-nums}
 .mar .loi{font-weight:600}
 .mar .regle{font:15px/1.55 var(--serif);color:var(--ink-2);margin:3px 0 6px;padding-left:10px;border-left:3px solid var(--rule)}
 .st{display:inline-block;font-size:12px;font-weight:600;border-radius:4px;padding:1px 7px;margin-right:6px}
-.st-sanction{background:#f8e2e2;color:#9b1c1c}.st-procedure{background:#fff3df;color:#8a4b00}.st-aucune{background:#e3f1e6;color:#1d6b33}
+.st-sanction{background:#f8e2e2;color:#9b1c1c}.st-procedure{background:#fff3df;color:#8a4b00}.st-aucune{background:#e3f1e6;color:#1d6b33}.st-etabli{background:#fde8d2;color:#7a3e00}
 .mar .methode{font-size:12px;color:var(--ink-3);margin:12px 0 0}
 .syn-badge{display:inline-block;font-size:11px;font-weight:600;color:#1d6b33;background:#e3f1e6;border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:1px}
 .gblock{border-top:1px solid var(--rule);padding:12px 0}
@@ -266,7 +266,7 @@ function synthese(d){
   const f=D.syntheses&&D.syntheses[d.id]; if(!f) return "";
   const src=x=>x.source?`<span class="src">Source : ${x.url?`<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.source)}</a>`:esc(x.source)}</span>`:"";
   const sec=(t,arr,fn,cls="")=>arr&&arr.length?`<h3>${t}</h3><ul>${arr.map(x=>`<li class="${cls}">${fn(x)}${src(x)}</li>`).join("")}</ul>`:"";
-  const STL={sanction:"Sanction ou condamnation prononcée",procedure:"Procédure engagée, aucune condamnation",aucune:"Aucune infraction documentée"};
+  const STL={sanction:"Sanction ou condamnation prononcée",procedure:"Procédure engagée, aucune condamnation",aucune:"Aucune infraction documentée",etabli:"Fait établi, susceptible de relever d'un texte, aucune poursuite engagée"};
   const marianne=f.droit&&f.droit.length?`<div class="mar"><h3>Marianne, références de droit</h3>
    ${f.droit.map(r=>`<div class="ref"><div class="loi">${esc(r.texte)}</div><p class="regle">${esc(r.regle)}</p>
     <p><b>Fait :</b> ${esc(r.fait)}</p>
