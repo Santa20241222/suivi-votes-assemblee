@@ -93,6 +93,8 @@ ul.members small{color:var(--ink-3);font-variant-numeric:tabular-nums}
 .syn .sanction{border-left:3px solid #9b1c1c;padding-left:10px}
 .mar{border:1px solid var(--rule);border-radius:10px;padding:14px 16px;margin:14px 0 6px;background:#fafbfc}
 .mar h3{margin-top:0;border:0;padding:0}
+.mar .concl{font:16px/1.55 var(--serif);margin:6px 0 10px;padding:10px 12px;border-radius:6px;background:#fff;border:1px solid var(--rule)}
+.mar .concl.pb{border-left:4px solid #9b1c1c}.mar .concl.ok{border-left:4px solid #1d6b33}
 .mar .ref{margin:10px 0 0;padding:10px 0 0;border-top:1px solid var(--rule)}
 .mar .ref:first-of-type{border-top:0;padding-top:0}
 .mar .loi{font-weight:600}
@@ -267,7 +269,8 @@ function synthese(d){
   const src=x=>x.source?`<span class="src">Source : ${x.url?`<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.source)}</a>`:esc(x.source)}</span>`:"";
   const sec=(t,arr,fn,cls="")=>arr&&arr.length?`<h3>${t}</h3><ul>${arr.map(x=>`<li class="${cls}">${fn(x)}${src(x)}</li>`).join("")}</ul>`:"";
   const STL={sanction:"Sanction ou condamnation prononcée",procedure:"Procédure engagée, aucune condamnation",aucune:"Aucune infraction documentée",etabli:"Fait établi, susceptible de relever d'un texte, aucune poursuite engagée"};
-  const marianne=f.droit&&f.droit.length?`<div class="mar"><h3>Marianne, références de droit</h3>
+  const concl=f.conclusion?`<p class="concl ${/^Comportement problématique/.test(f.conclusion)?"pb":"ok"}"><b>Conclusion de Marianne.</b> ${esc(f.conclusion)}</p>`:"";
+  const marianne=f.droit&&f.droit.length?`<div class="mar"><h3>Marianne</h3>${concl}
    ${f.droit.map(r=>`<div class="ref"><div class="loi">${esc(r.texte)}</div><p class="regle">${esc(r.regle)}</p>
     <p><b>Fait :</b> ${esc(r.fait)}</p>
     <p><span class="st st-${r.statut}">${STL[r.statut]||esc(r.statut)}</span>${esc(r.detail)}${src(r)}</p></div>`).join("")}
