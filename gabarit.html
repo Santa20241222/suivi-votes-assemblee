@@ -91,6 +91,15 @@ ul.members small{color:var(--ink-3);font-variant-numeric:tabular-nums}
 .syn ul{margin:0;padding-left:18px}.syn li{margin:7px 0}
 .syn .src{display:block;font-size:12px;color:var(--ink-3)}.syn .src a{color:inherit}
 .syn .sanction{border-left:3px solid #9b1c1c;padding-left:10px}
+.mar{border:1px solid var(--rule);border-radius:10px;padding:14px 16px;margin:14px 0 6px;background:#fafbfc}
+.mar h3{margin-top:0;border:0;padding:0}
+.mar .ref{margin:10px 0 0;padding:10px 0 0;border-top:1px solid var(--rule)}
+.mar .ref:first-of-type{border-top:0;padding-top:0}
+.mar .loi{font-weight:600}
+.mar .regle{font:15px/1.55 var(--serif);color:var(--ink-2);margin:3px 0 6px;padding-left:10px;border-left:3px solid var(--rule)}
+.st{display:inline-block;font-size:12px;font-weight:600;border-radius:4px;padding:1px 7px;margin-right:6px}
+.st-sanction{background:#f8e2e2;color:#9b1c1c}.st-procedure{background:#fff3df;color:#8a4b00}.st-aucune{background:#e3f1e6;color:#1d6b33}
+.mar .methode{font-size:12px;color:var(--ink-3);margin:12px 0 0}
 .syn-badge{display:inline-block;font-size:11px;font-weight:600;color:#1d6b33;background:#e3f1e6;border-radius:4px;padding:1px 6px;margin-left:6px;vertical-align:1px}
 .gblock{border-top:1px solid var(--rule);padding:12px 0}
 .gblock h3{font:600 16px/1.3 var(--serif);margin:0 0 6px;display:flex;align-items:center;gap:8px}
@@ -257,8 +266,15 @@ function synthese(d){
   const f=D.syntheses&&D.syntheses[d.id]; if(!f) return "";
   const src=x=>x.source?`<span class="src">Source : ${x.url?`<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.source)}</a>`:esc(x.source)}</span>`:"";
   const sec=(t,arr,fn,cls="")=>arr&&arr.length?`<h3>${t}</h3><ul>${arr.map(x=>`<li class="${cls}">${fn(x)}${src(x)}</li>`).join("")}</ul>`:"";
+  const STL={sanction:"Sanction ou condamnation prononcée",procedure:"Procédure engagée, aucune condamnation",aucune:"Aucune infraction documentée"};
+  const marianne=f.droit&&f.droit.length?`<div class="mar"><h3>Marianne, références de droit</h3>
+   ${f.droit.map(r=>`<div class="ref"><div class="loi">${esc(r.texte)}</div><p class="regle">${esc(r.regle)}</p>
+    <p><b>Fait :</b> ${esc(r.fait)}</p>
+    <p><span class="st st-${r.statut}">${STL[r.statut]||esc(r.statut)}</span>${esc(r.detail)}${src(r)}</p></div>`).join("")}
+   <p class="methode">${esc(D.syntheses._methode||"")}</p></div>`:"";
   return `<div class="syn">
    ${f.resume?`<p class="resume">${esc(f.resume)}</p>`:""}
+   ${marianne}
    ${sec("Sanctions, poursuites et procédures",f.sanctions,x=>`<span class="date">${esc(x.date)}</span> ${esc(x.detail)}`,"sanction")}
    ${sec("Prises de position",f.positions,x=>`<b>${esc(x.sujet)}.</b> ${esc(x.detail)}`)}
    ${sec("Actions et initiatives",f.actions,x=>`<span class="date">${esc(x.date)}</span> ${esc(x.detail)}`)}

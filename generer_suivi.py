@@ -300,8 +300,8 @@ def main():
     if os.path.exists(chemin_syn):
         with open(chemin_syn, encoding="utf-8") as f:
             syn = json.load(f)
-        data["syntheses"] = {k: v for k, v in syn.items() if not k.startswith("_")}
-        print(f"     Synthèses documentées intégrées : {len(data['syntheses'])}")
+        data["syntheses"] = {k: v for k, v in syn.items() if not k.startswith("_") or k == "_methode"}
+        print(f"     Synthèses documentées intégrées : {len([k for k in data['syntheses'] if not k.startswith('_')])}")
     else:
         data["syntheses"] = {}
     gabarit = os.path.join(ici, "gabarit.html")
