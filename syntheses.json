@@ -1,5 +1,5 @@
 {
- "_note": "Synthèses factuelles rédigées à partir de sources publiques. Chaque élément cite sa source. Lot 1 rédigé le 11 octobre 2026.",
+ "_note": "Synthèses factuelles rédigées à partir de sources publiques. Chaque élément cite sa source. Lots 1 et 2 rédigés le 11 octobre 2026.",
  "PA720892": {
   "nom": "Mathilde Panot",
   "redige": "2026-10-11",
@@ -256,5 +256,242 @@
    }
   ]
  },
- "_methode": "Rubrique « Marianne » : pour chaque député, les règles de droit en jeu sont citées comme référence (Constitution, Code pénal, Règlement de l'Assemblée nationale), mises en regard du fait documenté, avec le statut exact de la procédure. Trois statuts seulement : « sanction ou condamnation prononcée » (décision rendue par l'autorité compétente), « procédure engagée, aucune condamnation » (la présomption d'innocence s'applique, article préliminaire du code de procédure pénale), « aucune infraction documentée ». Aucune qualification n'est ajoutée au-delà de ce que dit le droit et de ce qu'ont décidé les autorités compétentes."
+ "_methode": "Rubrique « Marianne » : pour chaque député, les règles de droit en jeu sont citées comme référence (Constitution, Code pénal, Règlement de l'Assemblée nationale), mises en regard du fait documenté, avec le statut exact de la procédure. Trois statuts seulement : « sanction ou condamnation prononcée » (décision rendue par l'autorité compétente), « procédure engagée, aucune condamnation » (la présomption d'innocence s'applique, article préliminaire du code de procédure pénale), « aucune infraction documentée ». Aucune qualification n'est ajoutée au-delà de ce que dit le droit et de ce qu'ont décidé les autorités compétentes.",
+ "PA796062": {
+  "nom": "Thomas Portes",
+  "redige": "2026-10-11",
+  "resume": "Député de la 3e circonscription de la Seine-Saint-Denis depuis 2022, ancien cheminot. Deux sanctions disciplinaires prononcées par l'Assemblée nationale.",
+  "positions": [
+   {
+    "sujet": "Réforme des retraites, 2023",
+    "detail": "Publie une photo de lui, écharpe tricolore, le pied sur un ballon à l'effigie du ministre du Travail Olivier Dussopt ; refuse de retirer le message ou de s'excuser en séance, déclarant qu'il le retirerait le jour où la réforme serait retirée.",
+    "source": "LCP, 10 février 2023",
+    "url": "https://lcp.fr/actualites/l-assemblee-exclut-le-depute-lfi-thomas-portes-pour-15-jours-de-seance-167419"
+   }
+  ],
+  "actions": [
+   {
+    "date": "2022-10",
+    "detail": "Invectives et menaces adressées en séance à des députés du Rassemblement national, le 30 octobre, selon le compte rendu rapporté par LCP.",
+    "source": "LCP, 30 novembre 2022",
+    "url": "https://lcp.fr/actualites/le-depute-thomas-portes-lfi-sanctionne-pour-des-propos-tenus-dans-l-hemicycle-de-l"
+   }
+  ],
+  "propositions": [],
+  "sanctions": [
+   {
+    "date": "2022-11-30",
+    "detail": "Rappel à l'ordre avec inscription au procès-verbal (deuxième niveau de sanction), décidé par le Bureau par 12 voix contre 2, pour des propos tenus dans l'hémicycle à l'encontre de députés RN. Privation d'un mois du quart de l'indemnité.",
+    "source": "LCP, 30 novembre 2022",
+    "url": "https://lcp.fr/actualites/le-depute-thomas-portes-lfi-sanctionne-pour-des-propos-tenus-dans-l-hemicycle-de-l"
+   },
+   {
+    "date": "2023-02-10",
+    "detail": "Censure avec exclusion temporaire, sanction maximale du Règlement : quinze jours de séance et privation de la moitié de l'indemnité pendant deux mois, votée par l'Assemblée sur proposition du Bureau, à la suite de la photo visant Olivier Dussopt.",
+    "source": "LCP, 10 février 2023",
+    "url": "https://lcp.fr/actualites/l-assemblee-exclut-le-depute-lfi-thomas-portes-pour-15-jours-de-seance-167419"
+   },
+   {
+    "date": "2024-01-19",
+    "detail": "Visé, avec d'autres responsables politiques, par les plaintes et signalements pour apologie du terrorisme déposés auprès du parquet national antiterroriste par l'association Jeunesse Française Juive après ses prises de position consécutives au 7 octobre 2023. Aucune condamnation connue.",
+    "source": "Actu-Juridique",
+    "url": "https://www.actu-juridique.fr/penal/plusieurs-personnalites-dont-jean-luc-melenchon-thomas-portes-et-daniele-obono-vises-par-une-plainte-pour-apologie-du-terrorisme/"
+   }
+  ],
+  "droit": [
+   {
+    "texte": "Règlement de l'Assemblée nationale, articles 70 et 71",
+    "regle": "Peines disciplinaires graduées : rappel à l'ordre, rappel à l'ordre avec inscription au procès-verbal, censure, censure avec exclusion temporaire, pour les manifestations troublant l'ordre, les injures, provocations ou menaces envers des collègues, l'Assemblée ou son Président.",
+    "fait": "Propos tenus en séance contre des députés RN (30 octobre 2022) ; photo publiée visant un ministre, sans excuses en séance (février 2023).",
+    "statut": "sanction",
+    "detail": "Deux sanctions prononcées : rappel à l'ordre avec inscription au procès-verbal (30 novembre 2022) et censure avec exclusion temporaire (10 février 2023).",
+    "source": "LCP",
+    "url": "https://lcp.fr/actualites/l-assemblee-exclut-le-depute-lfi-thomas-portes-pour-15-jours-de-seance-167419"
+   },
+   {
+    "texte": "Code pénal, article 421-2-5",
+    "regle": "Apologie publique d'actes de terrorisme : cinq ans d'emprisonnement et 75 000 euros d'amende.",
+    "fait": "Prises de position publiques après le 7 octobre 2023 visées par des plaintes associatives.",
+    "statut": "procedure",
+    "detail": "Plaintes et signalements au parquet national antiterroriste (19 janvier 2024). Aucune poursuite ni condamnation connue à la date de rédaction ; la présomption d'innocence s'applique.",
+    "source": "Actu-Juridique",
+    "url": "https://www.actu-juridique.fr/penal/plusieurs-personnalites-dont-jean-luc-melenchon-thomas-portes-et-daniele-obono-vises-par-une-plainte-pour-apologie-du-terrorisme/"
+   }
+  ]
+ },
+ "PA795318": {
+  "nom": "Louis Boyard",
+  "redige": "2026-10-11",
+  "resume": "Député de la 3e circonscription du Val-de-Marne depuis 2022, réélu en 2024 ; ancien chroniqueur de télévision. Partie à plusieurs procédures judiciaires liées à ses prises de position médiatiques.",
+  "positions": [
+   {
+    "sujet": "Concentration des médias",
+    "detail": "Sur le plateau de TPMP le 10 novembre 2022, accuse les plus grandes fortunes françaises, dont Vincent Bolloré, d'appauvrir l'Afrique ; défend une proposition de loi de son groupe pour limiter la concentration dans les médias.",
+    "source": "CB News, 14 novembre 2022",
+    "url": "https://www.cbnews.fr/node/72694"
+   }
+  ],
+  "actions": [
+   {
+    "date": "2022-11",
+    "detail": "Dépose plainte avec constitution de partie civile contre Cyril Hanouna pour injure publique envers une personne chargée d'une mission de service public.",
+    "source": "CB News, 2024",
+    "url": "https://www.cbnews.fr/node/89466"
+   }
+  ],
+  "propositions": [],
+  "sanctions": [
+   {
+    "date": "2026-01-21",
+    "detail": "Relaxé par la 17e chambre du tribunal correctionnel de Paris dans la procédure en diffamation engagée par Cyril Hanouna ; le tribunal retient que les propos relevaient du débat d'idées et rejette les demandes d'indemnisation.",
+    "source": "Le Club des juristes, janvier 2026",
+    "url": "https://www.leclubdesjuristes.com/en-bref/la-justice-a-prononce-la-relaxe-de-louis-boyard-dans-laffaire-de-diffamation-lopposant-a-cyril-hanouna-13832/"
+   },
+   {
+    "date": "2026-03-19",
+    "detail": "En sens inverse, Cyril Hanouna est condamné en appel à lui verser 2 000 euros pour injure publique (4 000 euros en première instance, 20 février 2025).",
+    "source": "AFP via Blue News, 19 mars 2026",
+    "url": "https://www.bluewin.ch/fr/infos/cyril-hanouna-condamne-en-appel-a-2000-euros-damende-pour-avoir-injurie-le-depute-lfi-louis-boyard-li.3152051"
+   }
+  ],
+  "droit": [
+   {
+    "texte": "Loi du 29 juillet 1881, articles 29 et 32 (diffamation publique)",
+    "regle": "La diffamation est toute allégation ou imputation d'un fait portant atteinte à l'honneur ou à la considération d'une personne ; elle est punie d'une amende de 12 000 euros, avec exception de bonne foi et protection du débat d'intérêt général.",
+    "fait": "Propos tenus sur le plateau de TPMP le 10 novembre 2022, poursuivis par Cyril Hanouna.",
+    "statut": "aucune",
+    "detail": "Relaxe prononcée le 21 janvier 2026 : les propos relevaient du débat d'idées. Le député est en revanche victime reconnue d'une injure publique (condamnation de l'animateur confirmée en appel).",
+    "source": "Le Club des juristes",
+    "url": "https://www.leclubdesjuristes.com/en-bref/la-justice-a-prononce-la-relaxe-de-louis-boyard-dans-laffaire-de-diffamation-lopposant-a-cyril-hanouna-13832/"
+   }
+  ]
+ },
+ "PA795746": {
+  "nom": "Antoine Léaument",
+  "redige": "2026-10-11",
+  "resume": "Député de la 10e circonscription de l'Essonne depuis 2022, ancien responsable de la communication numérique de La France insoumise (2013-2022). Rapporteur de la commission d'enquête sur l'organisation des élections en France (2025).",
+  "positions": [
+   {
+    "sujet": "Sondages et organisation des élections",
+    "detail": "Dans son rapport de juin 2025 (115 recommandations), soutient que les sondages ne sont pas scientifiques et sous-estiment structurellement la gauche ; préconise un encadrement plus strict, voire une interdiction des enquêtes d'intentions de vote. Le président de la commission (EPR) conclut pour sa part que le système électoral est solide.",
+    "source": "LCP, 6 juin 2025",
+    "url": "https://lcp.fr/index%2ephp/actualites/sondages-le-depute-lfi-antoine-leaument-preconise-d-encadrer-plus-strictement-les"
+   },
+   {
+    "sujet": "Antisémitisme",
+    "detail": "Le 20 mars 2026, déclare sur Sud Radio que les compatriotes juifs auront toujours le soutien de LFI, en réponse aux accusations visant son mouvement.",
+    "source": "Sud Radio, 20 mars 2026",
+    "url": "https://www.sudradio.fr/linvite-politique/antoine-leaument-nos-compatriotes-juifs-auront-toujours-le-soutien-de-lfi"
+   }
+  ],
+  "actions": [
+   {
+    "date": "2026-01",
+    "detail": "Le 22 janvier, après que le président de séance Sébastien Chenu (RN) lui a coupé le micro, quitte son banc pour l'interpeller avec véhémence au pied du perchoir ; M. Chenu saisit le Bureau pour menaces physiques, ce que le député conteste, affirmant lui avoir seulement demandé de descendre discuter.",
+    "source": "LCP, 22 janvier 2026",
+    "url": "https://lcp.fr/actualites/si-vous-voulez-lapider-les-homosexuels-votez-lfi-les-propos-de-laurent-jacobelli-rn"
+   }
+  ],
+  "propositions": [],
+  "sanctions": [
+   {
+    "date": "2026-02-18",
+    "detail": "Rappel à l'ordre avec inscription au procès-verbal prononcé par le Bureau pour outrage et provocation envers le président de séance ; privation d'un mois du quart de l'indemnité parlementaire. Deux députés RN sont sanctionnés le même jour. Le député qualifie la décision de sanction politique.",
+    "source": "Communiqué de la Présidence de l'Assemblée nationale, 18 février 2026",
+    "url": "https://presidence.assemblee-nationale.fr/pdf/show/45761/communiquePressePDF/Communiqu%C3%A9%20de%20la%20Pr%C3%A9sidente%20-%20Mercredi%2018%20f%C3%A9vrier%202026.pdf"
+   }
+  ],
+  "droit": [
+   {
+    "texte": "Règlement de l'Assemblée nationale, articles 70 et 71",
+    "regle": "Le rappel à l'ordre avec inscription au procès-verbal est le deuxième niveau des peines disciplinaires ; il emporte de droit la privation, pendant un mois, du quart de l'indemnité parlementaire.",
+    "fait": "Comportement envers le président de séance le 22 janvier 2026.",
+    "statut": "sanction",
+    "detail": "Rappel à l'ordre avec inscription au procès-verbal prononcé par le Bureau le 18 février 2026 pour outrage et provocation envers le président de séance.",
+    "source": "Communiqué de la Présidence de l'Assemblée nationale",
+    "url": "https://presidence.assemblee-nationale.fr/pdf/show/45761/communiquePressePDF/Communiqu%C3%A9%20de%20la%20Pr%C3%A9sidente%20-%20Mercredi%2018%20f%C3%A9vrier%202026.pdf"
+   }
+  ]
+ },
+ "PA795310": {
+  "nom": "Clémence Guetté",
+  "redige": "2026-10-11",
+  "resume": "Députée de la 2e circonscription du Val-de-Marne depuis 2022, réélue en 2024. Vice-présidente de l'Assemblée nationale depuis le 18 juillet 2024, réélue en octobre 2025. Coordinatrice du programme de La France insoumise et coprésidente de l'institut La Boétie avec Jean-Luc Mélenchon.",
+  "positions": [
+   {
+    "sujet": "Fiscalité",
+    "detail": "Défend une politique de justice fiscale visant les plus hauts patrimoines et critique les nominations à la Cour des comptes et à la Banque de France ; annonce vouloir démanteler l'empire Bolloré en cas de victoire en 2027.",
+    "source": "Sud Radio, 20 mai 2026",
+    "url": "https://www.sudradio.fr/emission/le-petit-dejeuner-politique-sudradio-675"
+   },
+   {
+    "sujet": "Droit de la famille",
+    "detail": "Propose, en septembre 2026, de créer des droits entre amis (baptême civil contraignant, héritage, congés), intégrés au programme présidentiel de Jean-Luc Mélenchon.",
+    "source": "LCP, 25 septembre 2026",
+    "url": "https://lcp.fr/actualites/heritage-conges-enfants-une-deputee-lfi-veut-creer-de-nouveaux-droits-entre-amis-442471"
+   }
+  ],
+  "actions": [
+   {
+    "date": "2024-10",
+    "detail": "Préside des séances de l'examen du projet de loi de finances pour 2025 en qualité de vice-présidente de l'Assemblée.",
+    "source": "Assemblée nationale, comptes rendus de séance",
+    "url": "https://www.assemblee-nationale.fr/dyn/deputes/PA2960/seance-publique?page=2"
+   }
+  ],
+  "propositions": [
+   {
+    "titre": "Proposition de loi pour une politique de l'amitié (nouveaux droits entre amis)",
+    "date": "2026-09",
+    "role": "première signataire",
+    "source": "LCP",
+    "url": "https://lcp.fr/actualites/heritage-conges-enfants-une-deputee-lfi-veut-creer-de-nouveaux-droits-entre-amis-442471"
+   }
+  ],
+  "sanctions": [],
+  "droit": [
+   {
+    "texte": "Règlement de l'Assemblée nationale, article 10 (Bureau)",
+    "regle": "Les vice-présidents suppléent le Président dans la direction des débats ; ils sont élus par l'Assemblée au début de chaque session ordinaire.",
+    "fait": "Élue vice-présidente le 18 juillet 2024, réélue en octobre 2025.",
+    "statut": "aucune",
+    "detail": "Fonction exercée conformément au Règlement. Aucune sanction ni procédure documentée.",
+    "source": "Politis, 31 janvier 2025",
+    "url": "https://www.politis.fr/articles/2025/01/clemence-guette-et-si-cetait-elle/"
+   }
+  ]
+ },
+ "PA795164": {
+  "nom": "Aurélie Trouvé",
+  "redige": "2026-10-11",
+  "resume": "Députée de la 9e circonscription de la Seine-Saint-Denis depuis 2022, ingénieure agronome, ancienne coprésidente et porte-parole d'Attac. Présidente de la commission des affaires économiques du 9 octobre 2024 au renouvellement d'octobre 2025, où lui succède Stéphane Travert (EPR).",
+  "positions": [],
+  "actions": [
+   {
+    "date": "2024-10",
+    "detail": "Élue présidente de la commission des affaires économiques au troisième tour, à la faveur d'un désaccord entre les groupes Droite républicaine et Ensemble pour la République sur la répartition des présidences.",
+    "source": "LCP, 9 octobre 2024",
+    "url": "https://lcp.fr/actualites/presidences-de-commissions-election-surprise-d-aurelie-trouve-lfi-a-la-tete-des-affaires"
+   },
+   {
+    "date": "2025-06",
+    "detail": "Préside les travaux de la commission, dont l'audition du Médiateur national de l'énergie et la désignation des rapporteurs pour avis sur le PLF 2026.",
+    "source": "Compte rendu de la commission des affaires économiques, 25 juin 2025",
+    "url": "https://www.assemblee-nationale.fr/dyn/17/comptes-rendus/cion-eco/l17cion-eco2425116_compte-rendu.pdf"
+   }
+  ],
+  "propositions": [],
+  "sanctions": [],
+  "droit": [
+   {
+    "texte": "Règlement de l'Assemblée nationale, article 39",
+    "regle": "Les bureaux des commissions permanentes sont élus au début de la législature puis à chaque session ordinaire ; leur composition s'efforce de reproduire la configuration politique de l'Assemblée.",
+    "fait": "Présidence de la commission des affaires économiques d'octobre 2024 à octobre 2025.",
+    "statut": "aucune",
+    "detail": "Fonction exercée conformément au Règlement. Aucune sanction ni procédure documentée.",
+    "source": "Acteurs publics, 9 octobre 2024",
+    "url": "https://acteurspublics.fr/nomination/3-commissions-thematiques-de-lassemblee-nationale-ont-elu-leur-president/"
+   }
+  ]
+ }
 }
